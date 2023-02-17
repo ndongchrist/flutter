@@ -18,21 +18,16 @@ class _InputPageState extends State<InputPage> {
             Row(
               children: [
                 ReusableCard(
-                  colour: Color(0xFF1D1A2F),
-                  cardChild: Column(
-                    children: [Icon(FontAwesomeIcons.mars), Text("Male")],
-                  ),
-                ),
+                    colour: Color(0xFF1D1A2F),
+                    cardChild: IconWid(
+                      icon: FontAwesomeIcons.mars,
+                      text: "Male",
+                    )),
                 ReusableCard(
                   colour: Color(0xFF1D1A2F),
-                  cardChild: Column(
-                    children: [
-                      Icon(
-                        FontAwesomeIcons.mars,
-                        color: Colors.amber,
-                      ),
-                      Text("Male")
-                    ],
+                  cardChild: IconWid(
+                    icon: FontAwesomeIcons.venus,
+                    text: "Female",
                   ),
                 ),
               ],
@@ -40,27 +35,15 @@ class _InputPageState extends State<InputPage> {
             Row(
               children: [
                 ReusableCard(
-                  colour: Color(0xFF1D1A2F),
-                  cardChild: Column(
-                    children: [Icon(FontAwesomeIcons.mars), Text("Male")],
-                  ),
-                ),
+                    colour: Color(0xFF1D1A2F), cardChild: Text("Hello")),
               ],
             ),
             Row(
               children: [
                 ReusableCard(
-                  colour: Color(0xFF1D1A2F),
-                  cardChild: Column(
-                    children: [Icon(FontAwesomeIcons.mars), Text("Male")],
-                  ),
-                ),
+                    colour: Color(0xFF1D1A2F), cardChild: Text("Hello")),
                 ReusableCard(
-                  colour: Color(0xFF1D1A2F),
-                  cardChild: Column(
-                    children: [Icon(FontAwesomeIcons.mars), Text("Male")],
-                  ),
-                ),
+                    colour: Color(0xFF1D1A2F), cardChild: Text("Hello")),
               ],
             ),
             Container(
@@ -74,6 +57,29 @@ class _InputPageState extends State<InputPage> {
   }
 }
 
+class IconWid extends StatelessWidget {
+  IconWid({required this.icon, required this.text});
+  final IconData icon;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(
+          icon,
+          size: 80,
+        ),
+        SizedBox(
+          height: 15,
+        ),
+        Text(text),
+      ],
+    );
+  }
+}
+
 class ReusableCard extends StatelessWidget {
   ReusableCard({required this.colour, required this.cardChild});
   final Color colour;
@@ -83,6 +89,7 @@ class ReusableCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
+        child: cardChild,
         height: 185,
         margin: EdgeInsets.all(7.0),
         decoration: BoxDecoration(
