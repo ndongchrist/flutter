@@ -6,6 +6,8 @@ import 'icon_content.dart';
 Color activateColor = Color(0xFF1D1A2F);
 Color inactivateColor = Color(0xFF121124);
 
+enum Gender { male, female }
+
 class InputPage extends StatefulWidget {
   @override
   _InputPageState createState() => _InputPageState();
@@ -14,24 +16,27 @@ class InputPage extends StatefulWidget {
 Color maleColor = inactivateColor;
 Color femaleColor = inactivateColor;
 
-int genderMale = 1;
-int genderFemale = 2;
-void colorToogleMale(int num) {
-  if (genderMale == 1) {
-    maleColor = activateColor;
-    femaleColor = inactivateColor;
-    print("hey");
-  } else {
-    maleColor = inactivateColor;
+Gender genderMale = Gender.male;
+Gender genderFemale = Gender.female;
+void colorToogleMale(Gender gender) {
+  if (genderMale == Gender.male) {
+    if (maleColor == inactivateColor) {
+      maleColor = activateColor;
+      femaleColor = inactivateColor;
+    } else {
+      maleColor = inactivateColor;
+    }
   }
 }
 
-void colorToogleFemale(int num) {
-  if (genderFemale == 2) {
-    femaleColor = activateColor;
-    maleColor = inactivateColor;
-  } else {
-    femaleColor = inactivateColor;
+void colorToogleFemale(Gender gender) {
+  if (genderFemale == Gender.female) {
+    if (femaleColor == inactivateColor) {
+      femaleColor = activateColor;
+      maleColor = inactivateColor;
+    } else {
+      femaleColor = inactivateColor;
+    }
   }
 }
 
@@ -50,7 +55,7 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        colorToogleMale(1);
+                        colorToogleMale(Gender.male);
                       });
                     },
                     child: ReusableCard(
@@ -65,7 +70,7 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        colorToogleFemale(2);
+                        colorToogleFemale(Gender.female);
                       });
                     },
                     child: ReusableCard(
