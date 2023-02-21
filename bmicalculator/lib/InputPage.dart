@@ -187,16 +187,21 @@ class _InputPageState extends State<InputPage> {
               )
             ],
           ),
-          Container(
-            color: Color(0xFFD8004C),
-            height: 40,
-            width: double.infinity,
-            margin: EdgeInsets.only(top: 0),
-            child: Center(
-                child: Text(
-              "Calculate your BMI",
-              style: TextStyle(fontWeight: FontWeight.w700),
-            )),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, '/result');
+            },
+            child: Container(
+              color: Color(0xFFD8004C),
+              height: 40,
+              width: double.infinity,
+              margin: EdgeInsets.only(top: 0),
+              child: Center(
+                  child: Text(
+                "Calculate your BMI",
+                style: TextStyle(fontWeight: FontWeight.w700),
+              )),
+            ),
           )
         ],
       ),
