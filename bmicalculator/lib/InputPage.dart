@@ -187,23 +187,38 @@ class _InputPageState extends State<InputPage> {
               )
             ],
           ),
-          GestureDetector(
+          BottomButton(
+            text: "Calculate",
             onTap: () {
               Navigator.pushNamed(context, '/result');
             },
-            child: Container(
-              color: Color(0xFFD8004C),
-              height: 40,
-              width: double.infinity,
-              margin: EdgeInsets.only(top: 0),
-              child: Center(
-                  child: Text(
-                "Calculate your BMI",
-                style: TextStyle(fontWeight: FontWeight.w700),
-              )),
-            ),
           )
         ],
+      ),
+    );
+  }
+}
+
+class BottomButton extends StatelessWidget {
+  BottomButton({required this.onTap, required this.text});
+
+  final VoidCallback onTap;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        color: Color(0xFFD8004C),
+        height: 40,
+        width: double.infinity,
+        margin: EdgeInsets.only(top: 0),
+        child: Center(
+            child: Text(
+          text,
+          style: TextStyle(fontWeight: FontWeight.w700),
+        )),
       ),
     );
   }
