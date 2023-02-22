@@ -3,9 +3,17 @@ import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 import 'ReusableCard.dart';
 import 'InputPage.dart';
+import 'calculatorBrain.dart';
 
 class resultScreen extends StatelessWidget {
-  const resultScreen({super.key});
+  resultScreen(
+      {required this.bmiResult,
+      required this.interpretation,
+      required this.resultText});
+
+  final String bmiResult;
+  final String resultText;
+  final String interpretation;
 
   @override
   Widget build(BuildContext context) {
@@ -47,18 +55,18 @@ class resultScreen extends StatelessWidget {
                               child: Container(
                             padding: EdgeInsets.all(20),
                             child: Text(
-                              "Normal",
+                              bmiResult.toUpperCase(),
                               style: kStateTextStyle,
                             ),
                           )),
                           Expanded(
                               child: Text(
-                            "17.3",
+                            resultText.toUpperCase(),
                             style: kNumberTextStyle,
                           )),
                           Expanded(
                               child: Text(
-                            "Your BMI is low, You should probably eat more",
+                            interpretation,
                             textAlign: TextAlign.center,
                           ))
                         ],
