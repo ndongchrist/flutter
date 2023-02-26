@@ -82,7 +82,7 @@ class _LocationScreenState extends State<LocationScreen> {
                       }));
                       if (typedName != null) {
                         var weatherData =
-                            weathermodel.getCurrentCityData(typedName);
+                            await weathermodel.getCurrentCityData(typedName);
                         updatePage(weatherData);
                         // print(typedName);
                       }

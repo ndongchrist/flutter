@@ -15,8 +15,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
   double? longitude;
 
   Future<dynamic> getCurrentLocationData() async {
-    WeatherModel weathermodel = WeatherModel();
-    var weatherData = await weathermodel.getLocationWeather();
+    var weatherData = await WeatherModel().getLocationWeather();
 
     Navigator.push(context, MaterialPageRoute(builder: (context) {
       return LocationScreen(
