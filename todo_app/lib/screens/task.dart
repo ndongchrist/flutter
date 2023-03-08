@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 
-class TasksScreen extends StatelessWidget {
-  const TasksScreen({super.key});
+class TasksScreen extends StatefulWidget {
+  @override
+  State<TasksScreen> createState() => _TasksScreenState();
+}
 
+class _TasksScreenState extends State<TasksScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.lightBlueAccent,
+          onPressed: () {},
+          child: Icon(Icons.add),
+        ),
         backgroundColor: Colors.lightBlueAccent,
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,17 +60,37 @@ class TasksScreen extends StatelessWidget {
               child: Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20))),
-                child: FloatingActionButton(
-                  onPressed: () {},
-                  backgroundColor: Colors.lightBlueAccent,
-                  child: Icon(
-                    Icons.add,
-                    size: 30,
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
                   ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: ListView(children: [
+                    ListTile(
+                      trailing: Checkbox(
+                        value: false,
+                        onChanged: (value) {},
+                      ),
+                      title: Text("Buy Milk"),
+                    ),
+                    ListTile(
+                      trailing: Checkbox(
+                        value: false,
+                        onChanged: (value) {},
+                      ),
+                      title: Text("Buy Eggs"),
+                    ),
+                    ListTile(
+                      trailing: Checkbox(
+                        value: true,
+                        onChanged: (value) {},
+                      ),
+                      title: Text("Buy Dehodrent"),
+                    )
+                  ]),
                 ),
               ),
             ),
