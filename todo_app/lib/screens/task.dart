@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/task_list.dart';
+import '../widgets/tasktile.dart';
+
 class TasksScreen extends StatefulWidget {
   @override
   State<TasksScreen> createState() => _TasksScreenState();
@@ -12,7 +15,10 @@ class _TasksScreenState extends State<TasksScreen> {
       home: Scaffold(
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.lightBlueAccent,
-          onPressed: () {},
+          onPressed: () {
+            showModalBottomSheet(
+                context: context, builder: (context) => Container());
+          },
           child: Icon(Icons.add),
         ),
         backgroundColor: Colors.lightBlueAccent,
@@ -68,29 +74,7 @@ class _TasksScreenState extends State<TasksScreen> {
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(20.0),
-                  child: ListView(children: [
-                    ListTile(
-                      trailing: Checkbox(
-                        value: false,
-                        onChanged: (value) {},
-                      ),
-                      title: Text("Buy Milk"),
-                    ),
-                    ListTile(
-                      trailing: Checkbox(
-                        value: false,
-                        onChanged: (value) {},
-                      ),
-                      title: Text("Buy Eggs"),
-                    ),
-                    ListTile(
-                      trailing: Checkbox(
-                        value: true,
-                        onChanged: (value) {},
-                      ),
-                      title: Text("Buy Dehodrent"),
-                    )
-                  ]),
+                  child: TaskList(),
                 ),
               ),
             ),
