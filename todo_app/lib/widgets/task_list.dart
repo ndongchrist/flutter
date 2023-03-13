@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/widgets/tasktile.dart';
+import 'package:provider/provider.dart';
+
+import 'taskData.dart';
 
 class TaskList extends StatelessWidget {
   const TaskList({
@@ -8,10 +11,13 @@ class TaskList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(children: [
-      Tasktile(),
-      Tasktile(),
-      Tasktile(),
-    ]);
+    final Task = Provider.of<TaskData>(context);
+    return ListView.builder(
+        itemCount: Task.taskCount,
+        itemBuilder: (context, index) {
+          return Tasktile(
+            title: Task.tasks[index],
+          );
+        });
   }
 }

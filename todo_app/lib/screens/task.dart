@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-
+import 'add_task_screen.dart';
 import '../widgets/task_list.dart';
-import '../widgets/tasktile.dart';
+import 'package:provider/provider.dart';
+import '../widgets/taskData.dart';
 
 class TasksScreen extends StatefulWidget {
   @override
@@ -11,13 +12,14 @@ class TasksScreen extends StatefulWidget {
 class _TasksScreenState extends State<TasksScreen> {
   @override
   Widget build(BuildContext context) {
+    final Task = Provider.of<TaskData>(context);
     return MaterialApp(
       home: Scaffold(
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.lightBlueAccent,
           onPressed: () {
             showModalBottomSheet(
-                context: context, builder: (context) => Container());
+                context: context, builder: (context) => AddTask());
           },
           child: Icon(Icons.add),
         ),
@@ -50,7 +52,7 @@ class _TasksScreenState extends State<TasksScreen> {
                         fontWeight: FontWeight.w700),
                   ),
                   Text(
-                    "12 Tasks",
+                    "${Task.taskCount} Tasks",
                     style: TextStyle(
                         fontSize: 18,
                         color: Colors.white,

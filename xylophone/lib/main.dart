@@ -48,7 +48,10 @@ class XylophoneApp extends StatelessWidget {
                 child: Container(
                   color: Colors.orange,
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      final player = AudioCache();
+                      player.play("note4.wav");
+                    },
                     child: Text(""),
                   ),
                 ),
