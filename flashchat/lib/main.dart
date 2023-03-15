@@ -8,15 +8,17 @@ import 'screens/registration_screen.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(FlashChat());
+  runApp(const FlashChat());
 }
 
 class FlashChat extends StatelessWidget {
+  const FlashChat({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark().copyWith(
-        textTheme: TextTheme(
+        textTheme: const TextTheme(
           bodyLarge: TextStyle(color: Colors.black54),
         ),
       ),

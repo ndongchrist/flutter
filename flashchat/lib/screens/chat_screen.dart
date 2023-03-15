@@ -10,6 +10,7 @@ class ChatScreen extends StatefulWidget {
 
   @override
   _ChatScreenState createState() =>
+      // ignore: no_logic_in_create_state
       _ChatScreenState(loggedInUser: FirebaseAuth.instance);
 }
 
@@ -23,13 +24,9 @@ class _ChatScreenState extends State<ChatScreen> {
 
   void getCurrentUser() async {
     try {
-      final user = await _auth.currentUser;
-      if (user != null) {
-        print(loggedInUser.currentUser!.email);
-      }
-    } catch (e) {
-      print(e);
-    }
+      final user = _auth.currentUser;
+      if (user != null) {}
+    } catch (e) {}
   }
 
   void getMessages() async {
@@ -62,7 +59,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 // Navigator.pop(context);
               }),
         ],
-        title: Text('⚡️Chat'),
+        title: const Text('⚡️Chat'),
         backgroundColor: Colors.lightBlueAccent,
       ),
       body: SafeArea(
@@ -130,6 +127,7 @@ class MessagesStream extends StatelessWidget {
         for (var message in messages) {
           final messageText = message.data()['text'];
           final messageSender = message.data()['sender'];
+
           final messageWidget = MessageBubble(
             text: messageText,
             sender: messageSender,
@@ -149,9 +147,9 @@ class MessagesStream extends StatelessWidget {
 }
 
 class MessageBubble extends StatelessWidget {
-  const MessageBubble({this.text, this.sender});
-  final String? text;
-  final String? sender;
+  const MessageBubble({required this.text, required this.sender});
+  final String text;
+  final String sender;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -160,20 +158,20 @@ class MessageBubble extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Text(
-            sender!,
-            style: TextStyle(color: Colors.black54, fontSize: 12),
+            sender,
+            style: const TextStyle(color: Colors.black54, fontSize: 12),
           ),
           Material(
+            color: Colors.lightBlueAccent,
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(30),
                 bottomLeft: Radius.circular(30),
                 bottomRight: Radius.circular(30)),
             elevation: 8.0,
-            color: Colors.lightBlueAccent,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20.0),
               child: Text(
-                '$text',
+                text,
                 style: TextStyle(color: Colors.white, fontSize: 15),
               ),
             ),
