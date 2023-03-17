@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'home.dart';
 import 'package:camera/camera.dart';
 
-late List<CameraDescription> _cameras;
+List<CameraDescription>? cameras;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  _cameras = await availableCameras();
-  runApp(const CameraApp());
+  cameras = await availableCameras();
+  runApp(const Home());
 }
 
 /// CameraApp is the Main Application.
@@ -26,7 +26,7 @@ class _CameraAppState extends State<CameraApp> {
   @override
   void initState() {
     super.initState();
-    controller = CameraController(_cameras[0], ResolutionPreset.max);
+    controller = CameraController(cameras![0], ResolutionPreset.max);
     controller.initialize().then((_) {
       if (!mounted) {
         return;
@@ -59,43 +59,11 @@ class _CameraAppState extends State<CameraApp> {
     }
     return MaterialApp(
       home: Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.blueAccent,
-            title: const Text('ML Camera'),
-          ),
-          body: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Container(
-                    height: 600,
-                    width: 500,
-                    child: CameraPreview(controller),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Container(
-                      height: 50,
-                      width: 200,
-                      child: Center(
-                        child: Text("Take a Shot!",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold)),
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.blueAccent,
-                      )),
-                ],
-              ),
-            ),
-          )),
+        appBar: AppBar(
+          backgroundColor: Colors.blueAccent,
+          title: const Text('ML Camera'),
+        ),
+      ),
     );
   }
 }
